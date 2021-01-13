@@ -1,0 +1,9 @@
+{
+    "extends": [
+        "../eslint-config/parsers/parser-javascript",
+        "../eslint-config/rules/rules-javascript",
+        "../eslint-config/rules/rules-react",
+        "../eslint-config/rules/rules-a11y",
+        "../eslint-config/base"
+    ]
+}
