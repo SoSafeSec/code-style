@@ -1,17 +1,25 @@
 {
+  "author": "Max Höffner",
+  "license": "ISC",
   "name": "@sosafe-react/code-style",
   "repository": "git0.sosafe.de:sosafe-react/code-style",
   "version": "0.0.2",
-  "description": "eslint, prettier and more for react projects",
+  "description": "eslint and more for SoSafe - react projects",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src"
+    "lint": "eslint src/ bin/",
+    "lint-fix": "eslint --fix src/ bin/"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./eslint-config/parsers/parser-javascript",
+      "./eslint-config/rules/rules-javascript",
+      "./eslint-config/base"
+  ]
   },
   "bin": {
     "code-style": "./bin/code-style.js"
   },
-  "author": "Max Höffner",
-  "license": "ISC",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.12.0",
     "@typescript-eslint/parser": "^4.12.0",
