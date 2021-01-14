@@ -24,14 +24,6 @@ module.exports = {
         'no-plusplus': 'off',
         'quotes': ['error', 'single'],
         'camelcase': ['warn'],
-        'no-use-before-define': [
-            'error',
-            {
-                functions: false,
-                classes: true,
-                variables: true,
-            },
-        ],
     },
     // overrides to be used for rules within non-js/ts-files
     overrides: [

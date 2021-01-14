@@ -52,6 +52,15 @@ module.exports = {
         'no-return-assign': 'off',
         'object-curly-newline': 'off',
 
+        'no-use-before-define': [
+            'error',
+            {
+                functions: false,
+                classes: true,
+                variables: true,
+            },
+        ],
+
         'prefer-destructuring': [
             'error',
             {
