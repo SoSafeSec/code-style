@@ -10,10 +10,12 @@ module.exports = {
         },
     },
     ignorePatterns: ['node_modules/'],
+    plugins: ['markdown'],
     // rules we want to apply to all projects, regardless of OS and used language.
     // basically, our version of editorconf.
     rules: {
         'indent': ['error', 4, { SwitchCase: 1 }],
+        'quote-props': 'off',
         'linebreak-style': 'off', // we should let git and the OS handle this one
         'max-len': ['error', { code: 160 }],
         'eol-last': ['error', 'always'],
@@ -41,6 +43,7 @@ module.exports = {
         },
         {
             files: ['*.md'],
+            processor: 'markdown/markdown',
             rules: {
                 'max-len': 'off',
             },
