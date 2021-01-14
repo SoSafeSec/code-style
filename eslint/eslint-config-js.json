@@ -1,0 +1,7 @@
+{
+    "extends": [
+        "./parsers/parser-javascript",
+        "./rules/rules-javascript",
+        "./base"
+    ]
+}

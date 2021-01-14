@@ -1,7 +1,0 @@
-{
-    "extends": [
-        "../eslint-config/parsers/parser-typescript",
-        "../eslint-config/rules/rules-typescript",
-        "../eslint-config/base"
-    ]
-}
