@@ -11,14 +11,20 @@ module.exports = {
         'import/resolver': {
             'node': {
                 'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+                paths: ['src'],
             },
         },
     },
+    extends: [
+        'plugin:import/errors',
+        'plugin:import/warnings',
+    ],
     ignorePatterns: ['node_modules/'],
-    plugins: ['markdown'],
+    plugins: ['markdown', 'import'],
     // rules we want to apply to all projects, regardless of OS and used language.
     // basically, our version of editorconf.
     rules: {
+        'semi': ['error', 'always'],
         'indent': ['error', 4, { SwitchCase: 1 }],
         'quote-props': 'off',
         'linebreak-style': 'off', // we should let git and the OS handle this one
@@ -29,6 +35,20 @@ module.exports = {
         'no-plusplus': 'off',
         'quotes': ['error', 'single'],
         'camelcase': ['warn'],
+
+        // regarding imports
+        'import/named': 2,
+        'import/namespace': 2,
+        'import/default': 2,
+        'import/export': 2,
+        'sort-imports': [
+            'error',
+            {
+                ignoreCase: true,
+                ignoreDeclarationSort: true,
+                ignoreMemberSort: true,
+            },
+        ],
     },
     // overrides to be used for rules within non-js/ts-files
     overrides: [
