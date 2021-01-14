@@ -8,6 +8,11 @@ module.exports = {
         react: {
             version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
         },
+        'import/resolver': {
+            'node': {
+                'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+            },
+        },
     },
     ignorePatterns: ['node_modules/'],
     plugins: ['markdown'],
@@ -29,7 +34,6 @@ module.exports = {
     overrides: [
         {
             files: ['*.md'],
-            processor: 'markdown/markdown',
             rules: {
                 'max-len': 'off',
             },
