@@ -36,12 +36,6 @@ module.exports = {
     // overrides to be used for rules within non-js/ts-files
     overrides: [
         {
-            files: ['*.css', '*.scss'],
-            rules: {
-                'indent': ['error', 4],
-            },
-        },
-        {
             files: ['*.md'],
             processor: 'markdown/markdown',
             rules: {
