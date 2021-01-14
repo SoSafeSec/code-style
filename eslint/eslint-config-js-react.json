@@ -1,0 +1,8 @@
+{
+    "extends": [
+        "./parsers/parser-javascript",
+        "./rules/rules-javascript",
+        "./rules/rules-react",
+        "./base"
+    ]
+}

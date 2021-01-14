@@ -1,0 +1,7 @@
+{
+    "extends": [
+        "./parsers/parser-typescript",
+        "./rules/rules-typescript",
+        "./base"
+    ]
+}

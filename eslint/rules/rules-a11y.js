@@ -10,5 +10,5 @@ module.exports = {
         'jsx-a11y/no-noninteractive-element-interactions': 'error',
         'jsx-a11y/no-static-element-interactions': 'error',
         'jsx-a11y/interactive-supports-focus': 'off',
-    }
-}
+    },
+};
