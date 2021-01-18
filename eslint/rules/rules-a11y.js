@@ -1,6 +1,6 @@
 module.exports = {
     // to be used with keyboardA11y-Helper functions!
-    plugins: ['react'],
+    plugins: ['jsx-a11y'],
     rules: {
         'jsx-a11y/anchor-is-valid': 'off',
         'jsx-a11y/aria-role': 'error',

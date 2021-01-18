@@ -1,0 +1,7 @@
+# EOL config
+*       text=auto
+*.sh	text eol=lf
+*.yml   text eol=lf
+
+# whitespace check / show error on CRLF
+*       whitespace=-cr-at-eol
