@@ -20,7 +20,7 @@ module.exports = {
         'plugin:import/warnings',
     ],
     ignorePatterns: ['node_modules/'],
-    plugins: ['markdown', 'import'],
+    plugins: ['import'],
     // rules we want to apply to all projects, regardless of OS and used language.
     // basically, our version of editorconf.
     rules: {
@@ -50,13 +50,4 @@ module.exports = {
             },
         ],
     },
-    // overrides to be used for rules within non-js/ts-files
-    overrides: [
-        {
-            files: ['*.md'],
-            rules: {
-                'max-len': 'off',
-            },
-        },
-    ],
 };
