@@ -3,7 +3,7 @@
   "license": "ISC",
   "name": "@sosafe-react/code-style",
   "repository": "git0.sosafe.de:sosafe-react/code-style",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "eslint and more for SoSafe - react projects",
   "main": "index.js",
   "scripts": {
