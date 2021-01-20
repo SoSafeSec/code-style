@@ -11,7 +11,7 @@ module.exports = {
         'import/resolver': {
             'node': {
                 'extensions': ['.js', '.jsx', '.ts', '.tsx'],
-                'moduleDirectory': ['node_modules ', 'src'],
+                'moduleDirectory': ['node_modules', 'src'],
             },
         },
     },
@@ -29,7 +29,7 @@ module.exports = {
         'indent': ['error', 4, { SwitchCase: 1 }],
         'quote-props': 'off',
         'linebreak-style': 'off', // we should let git and the OS handle this one
-        'max-len': ['error', { code: 160 }],
+        'max-len': ['error', { code: 240 }],
         'eol-last': ['error', 'always'],
         'no-trailing-spaces': 'error',
         'no-multiple-empty-lines': [2, { max: 2 }],
