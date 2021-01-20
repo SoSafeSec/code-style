@@ -11,11 +11,12 @@ module.exports = {
         'import/resolver': {
             'node': {
                 'extensions': ['.js', '.jsx', '.ts', '.tsx'],
-                paths: ['src'],
+                'moduleDirectory': ['node_modules ', 'src'],
             },
         },
     },
     extends: [
+        'eslint:recommended',
         'plugin:import/errors',
         'plugin:import/warnings',
     ],
