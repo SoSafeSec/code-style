@@ -40,11 +40,12 @@ console.log('linting files\n', locations, '\nwith lintingOptions:', lintingOptio
 (async function main() {
     const eslint = new ESLint(lintingOptions);
     const results = await eslint.lintFiles(locations);
+    if (autofix) await ESLint.outputFixes(results);
     const formatter = await eslint.loadFormatter(summary ? 'summary' : 'stylish');
 
     if (!summary) {
         const resultText = formatter.format(results);
-        
+
         if (resultText) console.log(resultText);
         else console.log('No linting errors found! 🎉\n');
     }
