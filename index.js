@@ -1,37 +1,56 @@
 #!/usr/bin/env node
 
-/* eslint-disable no-unreachable */
 /* eslint-disable no-console */
 
 /**
- * code-style takes two arguments:
- * config: [js|js-react|js-react-a11y|ts|ts-react]
+ * code-style takes one argument and directly depends on the package.json being present:
  * file(s) to check: [file|dir|glob]*
+ *
  */
 
-
 const path = require('path');
+const fs = require('fs');
+const { ESLint } = require('eslint');
 
 const args = process.argv.slice(2);
-const configName = args.shift();
-const configPath = path.resolve(__dirname, `./eslint/eslint-config-${configName}.json`);
+const packageJsonFile = path.resolve(process.cwd(), 'package.json');
+if (!packageJsonFile) throw new Error(`package.json could not be found in location ${process.cwd()}`);
+
+const packageJson = JSON.parse(fs.readFileSync(packageJsonFile));
+if (!packageJson['eslintConfig']) throw new Error('package.json does not include key "eslintConfig". Please make sure the key exists and has a proper value.');
 
 const flags = args.filter((cArg) => cArg.startsWith('--'));
 const locations = args
     .filter((cArg) => !cArg.startsWith('--'))
     .map((cArg) => path.resolve(process.cwd(), cArg));
+if (!locations.length) throw new Error('please specify one or more locations to be linted.');
 
-const command = `eslint --config ${configPath} ${locations.join(' ')} ${flags.join(' ')}`;
+// we currently support --fix and --summary as flags
+const autofix = (flags.includes('--fix'));
+const summary = (flags.includes('--summary'));
 
-console.log('Linting project with ruleset: ', configPath, '\nlinting location(s): ', locations, '\nadditional flags: ', flags);
-console.log('running command:\n', command);
+const lintingOptions = {
+    useEslintrc: false,
+    overrideConfig: packageJson['eslintConfig'],
+    fix: autofix,
+};
 
-const { exec } = require('child_process');
-// syntax to call eslint: eslint [options] [file|dir|glob]*
-// more info here: https://eslint.org/docs/user-guide/command-line-interface
-// we're not able to set multiple config files, hence the many json-files that just extend different rulesets
-exec(command, (error, stdout, stderr) => {
-    if (error) console.log(`error: ${error}`);
-    if (stderr) console.log(`stderr: ${stderr}`);
-    if (stdout) console.log(`stdout: ${stdout}`);
+console.log('linting files\n', locations, '\nwith lintingOptions:', lintingOptions);
+
+(async function main() {
+    const eslint = new ESLint(lintingOptions);
+    const results = await eslint.lintFiles(locations);
+    if (autofix) await ESLint.outputFixes(results);
+    const formatter = await eslint.loadFormatter(summary ? 'summary' : 'stylish');
+
+    const resultText = formatter.format(results);
+
+    if (!summary) {
+        if (resultText) return console.log(resultText);
+        if (autofix) console.log('fixed all auto-fixable issues!\n');
+        return console.log('No linting errors found! 🎉\n');
+    }
+}()).catch((error) => {
+    process.exitCode = 1;
+    console.error(error);
 });

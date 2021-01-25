@@ -12,34 +12,29 @@ A whole lot of node script work. This package may need some packages of it's own
 # Inspiration gathering
 Most of the functionalities can be seen at <https://github.com/facebook/create-react-app/tree/master/packages/react-scripts>
 
+# using this package with npm-scripts
+add these lines to your `"scripts"` tag inside the package.json:
+
+```json
+"lint": "code-style ./src",
+"lint:summary": "npm run lint -- --summary",
+"lint:fix": "npm run lint -- --fix"
+```
+
+in addition, you have to add the eslintConfig Object to your package.json. *This package won't work without this key!*:
+```json
+"eslintConfig": {
+    "extends": "./node_modules/@sosafe-react/code-style/eslint/eslint-config-js-react"
+},
+```
+
+the `eslint-config-js-react` file can be replaced by any of these, to achieve respective linting: `[ eslint-config-js | eslint-config-js-react | eslint-config-js-react-a11y | eslint-config-ts | eslint-config-ts-react ]`
+
+you can add custom rules right here, in a `"rules": {}`-Object
+
 # configuring eslint-vscode extension to work with this package
 In order for the VSCode extension to work, you have to have eslint and the eslint-plugins used in this package, globally installed:
 
 ```
 npm i -g eslint eslint-plugin-react eslint-plugin-jsx-a11y eslint-plugin-import
 ```
-
-in addition, you have to tweak the package.json a tiny bit, depending on your preferred rules. If you want to use js and react, this is the config to add:
-```json
-"eslintConfig": {
-    "extends": [
-        "./node_modules/@sosafe-react/code-style/eslint/parsers/parser-javascript",
-        "./node_modules/@sosafe-react/code-style/eslint/rules/rules-javascript",
-        "./node_modules/@sosafe-react/code-style/eslint/rules/rules-react",
-        "./node_modules/@sosafe-react/code-style/eslint/base"
-    ]
-},
-```
-
-you can copy-paste this from the respective `/eslint/eslint-config-*.json` file
-
-# using this package with npm-scripts
-
-add these two lines to your `"scripts"` tag inside the package.json:
-
-```json
-"lint": "code-style js-react ./src",
-"lint:fix": "npm run lint -- --fix"
-```
-
-the `js-react` argument can be replaced by any of these, to achieve respective linting: `[ js | js-react | js-react-a11y | ts | ts-react ]`
