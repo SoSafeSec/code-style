@@ -11,6 +11,7 @@
 const path = require('path');
 const fs = require('fs');
 const { ESLint } = require('eslint');
+require('eslint-formatter-summary');
 
 const args = process.argv.slice(2);
 const packageJsonFile = path.resolve(process.cwd(), 'package.json');
