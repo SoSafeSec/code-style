@@ -39,11 +39,11 @@ console.log('linting files\n', locations, '\nwith lintingOptions:', lintingOptio
 (async function main() {
     const eslint = new ESLint(lintingOptions);
     const results = await eslint.lintFiles(locations);
-
     const formatter = await eslint.loadFormatter('stylish');
     const resultText = formatter.format(results);
 
-    console.log(resultText);
+    if (resultText) console.log(resultText);
+    else console.log('No linting errors found! 🎉');
 }()).catch((error) => {
     process.exitCode = 1;
     console.error(error);
