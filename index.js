@@ -43,11 +43,12 @@ console.log('linting files\n', locations, '\nwith lintingOptions:', lintingOptio
     if (autofix) await ESLint.outputFixes(results);
     const formatter = await eslint.loadFormatter(summary ? 'summary' : 'stylish');
 
-    if (!summary) {
-        const resultText = formatter.format(results);
+    const resultText = formatter.format(results);
 
-        if (resultText) console.log(resultText);
-        else console.log('No linting errors found! 🎉\n');
+    if (!summary) {
+        if (resultText) return console.log(resultText);
+        if (autofix) console.log('fixed all auto-fixable issues!\n');
+        return console.log('No linting errors found! 🎉\n');
     }
 }()).catch((error) => {
     process.exitCode = 1;
