@@ -3,19 +3,15 @@
   "license": "ISC",
   "name": "@sosafe-react/code-style",
   "repository": "git0.sosafe.de:sosafe-react/code-style",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "eslint and more for SoSafe - react projects",
   "main": "index.js",
   "scripts": {
-    "lint": "node . js-react-a11y .",
+    "lint": "node ./index.js .",
     "lint:fix": "npm run lint -- --fix"
   },
   "eslintConfig": {
-    "extends": [
-      "./eslint/parsers/parser-javascript",
-      "./eslint/rules/rules-javascript",
-      "./eslint/base"
-    ]
+    "extends": "./eslint/eslint-config-js"
   },
   "bin": {
     "code-style": "./index.js"
