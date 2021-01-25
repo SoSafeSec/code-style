@@ -25,8 +25,9 @@ const locations = args
     .map((cArg) => path.resolve(process.cwd(), cArg));
 if (!locations.length) throw new Error('please specify one or more locations to be linted.');
 
-// we currently only support --fix as a flag
+// we currently support --fix and --summary as flags
 const autofix = (flags.includes('--fix'));
+const summary = (flags.includes('--summary'));
 
 const lintingOptions = {
     useEslintrc: false,
@@ -39,7 +40,7 @@ console.log('linting files\n', locations, '\nwith lintingOptions:', lintingOptio
 (async function main() {
     const eslint = new ESLint(lintingOptions);
     const results = await eslint.lintFiles(locations);
-    const formatter = await eslint.loadFormatter('stylish');
+    const formatter = await eslint.loadFormatter(summary ? 'summary' : 'stylish');
     const resultText = formatter.format(results);
 
     if (resultText) console.log(resultText);

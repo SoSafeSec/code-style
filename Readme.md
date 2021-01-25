@@ -13,14 +13,11 @@ A whole lot of node script work. This package may need some packages of it's own
 Most of the functionalities can be seen at <https://github.com/facebook/create-react-app/tree/master/packages/react-scripts>
 
 # using this package with npm-scripts
-
-you can copy-paste this from the respective `/eslint/eslint-config-*.json` file
-
-
-add these two lines to your `"scripts"` tag inside the package.json:
+add these lines to your `"scripts"` tag inside the package.json:
 
 ```json
 "lint": "code-style ./src",
+"lint:summary": "npm run lint -- --summary",
 "lint:fix": "npm run lint -- --fix"
 ```
 
